@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import VenueCard from '../../components/VenueCard.astro';
+import {venues,cities} from '../../lib/data';
+---
+<BaseLayout title="Live music venues in the Triangle | LiveDiscover"><section class="container page-section"><div class="page-intro"><p class="eyebrow">Get to know the neighborhood</p><h1>The room makes<br/><i>the night.</i></h1><p>Intimate clubs. Historic stages. A new place around the corner.<br/>Find the places that bring the Triangle together.</p></div><div class="grid-filter-bar"><label for="venue-city">Find your city</label><select id="venue-city" data-grid-filter="city"><option value="">All cities</option>{cities.map(city=><option>{city}</option>)}</select><span class="mono" data-grid-count>{venues.length} venues</span></div><div class="venue-grid">{venues.map(venue=><div data-grid-item data-city={venue.city}><VenueCard venue={venue}/></div>)}</div><div class="empty-state" data-grid-empty hidden><h2>More rooms to come.</h2><p>No sample venues in this city yet. Try a neighboring city.</p><a href="/submit" class="button button-ghost">Tell us about a show →</a></div></section></BaseLayout>

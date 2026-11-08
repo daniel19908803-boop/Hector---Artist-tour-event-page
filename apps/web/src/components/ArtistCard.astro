@@ -1,0 +1,9 @@
+---
+import {artistEvents,getVenue,displayDate} from '../lib/data';
+import type {Artist} from '../lib/types';
+import Icon from './Icon.astro';
+interface Props{artist:Artist;}
+const {artist}=Astro.props;
+const next=artistEvents(artist.id)[0];
+---
+<article class="artist-card"><a class="artist-image image-hover" href={`/artists/${artist.slug}`}><img src={artist.image} alt={`Original ${artist.genre.toLowerCase()} stage-light artwork`} width="600" height="750" loading="lazy"/><span class="genre-chip">{artist.genre}</span><div class="artist-image-scrim"></div><span class="artist-card-monogram" aria-hidden="true">{artist.id==='vexa'?'VX':artist.name.split(' ').filter(s=>s!=='&'&&s!=='the').map(s=>s[0]).slice(0,2).join('')}</span>{next&&<p class="artist-next"><span class="tiny-dot"></span> Next: {displayDate(next.startDateTime)}, {getVenue(next.venueId).city}</p>}</a><div class="artist-card-bottom"><div><h3><a href={`/artists/${artist.slug}`}>{artist.name}</a></h3><p>{artist.dates} dates <span>·</span> {artistEvents(artist.id).length} in the Triangle</p></div><button class="follow-button" data-follow={artist.id} aria-label={`Follow ${artist.name}`} aria-pressed="false"><Icon name="plus" size={14}/><span>Follow</span></button></div></article>

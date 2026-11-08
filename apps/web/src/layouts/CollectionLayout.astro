@@ -1,0 +1,10 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import EventRow from '../components/EventRow.astro';
+import VenueCard from '../components/VenueCard.astro';
+import ArtistCard from '../components/ArtistCard.astro';
+import type {MusicEvent,Venue,Artist} from '../lib/types';
+interface Props{title:string;eyebrow:string;description:string;events:MusicEvent[];venues?:Venue[];artists?:Artist[];}
+const {title,eyebrow,description,events,venues=[],artists=[]}=Astro.props;
+---
+<BaseLayout title={`${title} | LiveDiscover`} description={description}><section class="container page-section"><div class="page-intro"><p class="eyebrow">{eyebrow}</p><h1>{title.split(' ').slice(0,-1).join(' ')}<br/><i>{title.split(' ').slice(-1)}</i></h1><p>{description}</p></div><div class="section-heading"><h2>Find your <i>next show.</i></h2><span class="mono">{events.length} upcoming</span></div>{events.length?events.map(event=><EventRow event={event}/>):<div class="empty-state"><h2>The next set is still taking shape.</h2><p>We haven’t added any sample shows here yet. There’s plenty happening nearby.</p><a href="/events" class="button button-primary">See what’s on →</a></div>}{venues.length>0&&<section style="margin-top:70px"><div class="section-heading"><h2>Know the <i>rooms.</i></h2></div><div class="venue-grid">{venues.map(venue=><VenueCard venue={venue}/>)}</div></section>}{artists.length>0&&<section style="margin-top:70px"><div class="section-heading"><h2>Meet the <i>artists.</i></h2></div><div class="artist-grid">{artists.map(artist=><ArtistCard artist={artist}/>)}</div></section>}</section></BaseLayout>

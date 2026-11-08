@@ -1,0 +1,14 @@
+---
+import Wordmark from './Wordmark.astro';
+import Icon from './Icon.astro';
+const pathname=Astro.url.pathname;
+const links=[['Discover','/'],['Events','/events'],['Artists','/artists'],['Venues','/venues'],['Opening soon','/openings']];
+---
+<header class="site-header">
+  <div class="container nav-inner">
+    <Wordmark/>
+    <nav class="desktop-nav" aria-label="Main navigation">{links.map(([label,href])=><a class:list={[{active:href==='/'?pathname==='/':pathname.startsWith(href)}]} href={href}>{label}{href==='/openings'&&<span class="tiny-dot"></span>}</a>)}</nav>
+    <div class="nav-actions"><a href="/saved" class="saved-pill"><Icon name="heart" size={16}/> <span>Saved</span><b data-saved-count>0</b></a><a href="/submit" class="button button-ghost nav-submit">Submit an event <Icon name="plus" size={15}/></a><button class="icon-button menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"><Icon name="menu"/></button></div>
+  </div>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden>{links.map(([label,href])=><a href={href}>{label}<Icon name="right" size={16}/></a>)}<a href="/calendar">Calendar<Icon name="calendar" size={16}/></a><a href="/submit">Submit an event<Icon name="plus" size={16}/></a></nav>
+</header>

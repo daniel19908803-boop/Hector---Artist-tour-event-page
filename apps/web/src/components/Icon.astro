@@ -1,0 +1,21 @@
+---
+interface Props {name: string; size?: number; class?: string;}
+const {name,size=20,class:className=''}=Astro.props;
+const paths: Record<string,string>={
+ arrow:'M7 17 17 7M7 7h10v10', right:'M5 12h14m-6-6 6 6-6 6',
+ heart:'M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z',
+ pin:'M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z M15 10a3 3 0 1 1-6 0 3 3 0 0 1 6 0',
+ search:'M21 21l-5-5 M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0',
+ calendar:'M8 2v4m8-4v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2',
+ chevron:'m8 10 4 4 4-4', plus:'M12 5v14M5 12h14', check:'m5 12 4 4L19 6',
+ menu:'M4 6h16M4 12h16M4 18h16',close:'m6 6 12 12M6 18 18 6',
+ music:'M9 18V5l12-3v13M9 9l12-3M9 18c0 2-2 3-4 3s-3-1-3-2 2-3 4-3 3 1 3 2Zm12-3c0 2-2 3-4 3s-3-1-3-2 2-3 4-3 3 1 3 2Z',
+ clock:'M12 8v4l3 2M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0',
+ share:'M12 16V2m-5 5 5-5 5 5M5 10H3v12h18V10h-2',
+ mail:'M3 5h18v14H3ZM3 5l9 8 9-8', ticket:'M3 5h18v5a2 2 0 0 0 0 4v5H3v-5a2 2 0 0 0 0-4V5Zm12 0v3m0 3v2m0 3v3',
+ headphones:'M3 14v-3a9 9 0 0 1 18 0v3M3 12h4v9H3Zm14 0h4v9h-4Z',
+ instagram:'M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm10 10a5 5 0 1 1-10 0 5 5 0 0 1 10 0M17.5 6.5h.01',
+ filter:'M4 7h16M7 12h10M10 17h4', globe:'M2 12h20M12 2a18 18 0 0 1 0 20 18 18 0 0 1 0-20M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0',
+ };
+---
+<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class={className} aria-hidden="true"><path d={paths[name]||paths.arrow}/></svg>

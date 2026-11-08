@@ -1,0 +1,18 @@
+---
+import {getArtist,getVenue,displayDate} from '../lib/data';
+import type {MusicEvent} from '../lib/types';
+import Icon from './Icon.astro';
+interface Props{event:MusicEvent;}
+const {event}=Astro.props;
+const artist=getArtist(event.artistId),venue=getVenue(event.venueId);
+const tonight=displayDate(event.startDateTime,'yyyy-MM-dd')===displayDate(new Date().toISOString(),'yyyy-MM-dd');
+const status=event.status==='sellingFast'?'Selling fast':event.status==='fewLeft'?'Few left':event.status==='soldOut'?'Sold out':event.status==='cancelled'?'Cancelled':tonight?'Tonight':undefined;
+---
+<article class="event-row" data-ends-at={event.endDateTime} data-event-id={event.id}>
+ <a href={`/events/${event.slug}`} class="event-date" title={displayDate(event.startDateTime,'EEEE, MMMM d')}><span>{displayDate(event.startDateTime,'MMM')}</span><strong>{displayDate(event.startDateTime,'dd')}</strong><small>{displayDate(event.startDateTime,'EEE')}</small></a>
+ <div class="event-main"><div class="event-title-line"><h3><a href={`/events/${event.slug}`}>{event.title}</a></h3>{status&&<span class:list={['status-pill',{'status-neutral':['Sold out','Cancelled'].includes(status)}]}>{status==='Tonight'&&<span class="tiny-dot"/>}{status}</span>}</div><p>{event.eventType==='venueOpening'?'Opening night':artist.tour}<span>·</span>{event.genre}</p></div>
+ <div class="event-location"><a href={`/venues/${venue.slug}`}><Icon name="pin" size={15}/>{venue.name}</a><p>{venue.city}<span>·</span>{displayDate(event.doorsTime,'h:mm a')} doors</p></div>
+ <div class="event-price">{event.isFree?'Free':<><small>from</small> ${event.priceFrom}</>}</div>
+ <button class="icon-button save-button" data-save={event.id} aria-label={`Save ${event.title}`} aria-pressed="false"><Icon name="heart" size={20}/></button>
+ <a class:list={['button','button-light','event-ticket',{'button-unavailable':event.status==='soldOut'||event.status==='cancelled'}]} href={`/events/${event.slug}`}>{event.ticketing==='rsvp'?'RSVP':event.status==='soldOut'||event.status==='cancelled'?'Details':'Tickets'}<Icon name="right" size={16}/></a>
+</article>

@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EventList from '../../islands/EventList';
+import {eventIndex} from '../../lib/data';
+---
+<BaseLayout title="Upcoming concerts & live music in the Triangle | LiveDiscover"><section class="container page-section"><div class="page-intro"><p class="eyebrow">The live music calendar</p><h1>Find your<br/><i>next night out.</i></h1><p>Small rooms. Big moments. Every kind of sound.<br/>Explore what’s coming to the Triangle.</p></div><EventList events={eventIndex} client:load/></section></BaseLayout>

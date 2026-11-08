@@ -1,0 +1,8 @@
+---
+import CollectionLayout from '../../layouts/CollectionLayout.astro';
+import {genres,artists,upcomingEvents} from '../../lib/data';
+export function getStaticPaths(){return genres.map(genre=>({params:{slug:genre.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-$/,'')},props:{genre}}))}
+const {genre}=Astro.props;
+const copy:Record<string,string>={'Indie rock':'Guitars with something to say. Discover the bands lighting up small rooms and big stages across the Triangle.',Electronic:'Follow the frequency. Live synths, deep bass, and nights that find their own rhythm.','Folk & Americana':'Honest stories, close harmonies, and a little room to listen. Find your next folk and Americana evening.','Soul & R&B':'Deep grooves and the kind of voices that make time slow down. Find the Triangle’s warmest nights.','Heavy metal':'Turn it up. Discover the riffs, the rooms, and the nights built for getting loud.',Pop:'The chorus you’ll still be singing tomorrow. Catch bright new voices and big-hearted live shows.','Hip-hop':'Words with weight. Beats with a pulse. Our hip-hop guide is taking shape, one local night at a time.',Jazz:'Leave room for the unexpected. Our jazz guide is growing with sessions, ensembles, and nights made for listening.'};
+---
+<CollectionLayout title={`${genre} in the Triangle`} eyebrow="Your kind of sound" description={copy[genre]} events={upcomingEvents.filter(e=>e.genre===genre)} artists={artists.filter(a=>a.genre===genre)}/>

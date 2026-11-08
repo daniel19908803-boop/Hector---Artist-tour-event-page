@@ -1,0 +1,32 @@
+{
+  "name": "@livediscover/web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro build",
+    "check": "astro check",
+    "preview": "astro preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "astro": "latest",
+    "@astrojs/preact": "latest",
+    "@astrojs/vercel": "latest",
+    "@astrojs/sitemap": "latest",
+    "@tailwindcss/vite": "latest",
+    "tailwindcss": "latest",
+    "preact": "^10.28.4",
+    "@fontsource/instrument-serif": "^5.2.8",
+    "@fontsource/inter-tight": "^5.2.6",
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "@sanity/client": "latest",
+    "@sanity/image-url": "latest",
+    "@portabletext/to-html": "latest",
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
+    "minisearch": "^7.2.0",
+    "zod": "^4.3.6",
+    "resend": "latest"
+  },
+  "devDependencies": {"@astrojs/check": "latest", "typescript": "^5.9.3"}
+}

@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EventRow from '../components/EventRow.astro';
+import {upcomingEvents} from '../lib/data';
+---
+<BaseLayout title="A little off the setlist — 404 | LiveDiscover"><section class="container page-section"><div class="page-intro"><p class="eyebrow">404 — A little off the setlist</p><h1>This room’s<br/><i>gone quiet.</i></h1><p>That page isn’t here. A good night still is.<br/>Search for a show or try one of the nights below.</p></div><form action="/events" class="listing-search" style="max-width:620px;margin-bottom:45px"><label for="missing-search" class="sr-only">Search live music</label><input id="missing-search" name="q" type="search" placeholder="Artist, venue, or city"/><button class="button button-primary">Find shows →</button></form>{upcomingEvents.slice(0,3).map(event=><EventRow event={event}/>)}</section></BaseLayout>

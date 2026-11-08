@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CalendarGrid from '../islands/CalendarGrid';
+import {eventIndex} from '../lib/data';
+---
+<BaseLayout title="The live music calendar — Triangle, NC | LiveDiscover"><section class="container page-section"><div class="page-intro"><p class="eyebrow">Make a little room for music</p><h1>A month of<br/><i>possibilities.</i></h1><p>Good nights don’t always plan themselves.<br/>Choose a day and see what’s on.</p></div><CalendarGrid events={eventIndex} client:load/></section></BaseLayout>

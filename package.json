@@ -1,0 +1,26 @@
+{
+  "name": "livediscover",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.32.1",
+  "pnpm": {"overrides": {"@emnapi/runtime": "1.11.3"}},
+  "scripts": {
+    "dev": "pnpm --filter @livediscover/web dev",
+    "build": "pnpm --filter @livediscover/web build",
+    "check": "pnpm --filter @livediscover/web check",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "seed": "tsx scripts/seed.ts",
+    "seed:clean": "tsx scripts/seed.ts --clean",
+    "studio": "pnpm --dir studio dev"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@axe-core/playwright": "^4.11.1",
+    "@types/node": "^24.0.0",
+    "sharp": "^0.34.5",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  }
+}

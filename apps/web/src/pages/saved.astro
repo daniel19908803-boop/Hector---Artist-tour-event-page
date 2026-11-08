@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EventList from '../islands/EventList';
+import {eventIndex} from '../lib/data';
+---
+<BaseLayout title="Your saved shows | LiveDiscover"><section class="container page-section"><div class="page-intro"><p class="eyebrow">Your personal setlist</p><h1>For <i>later.</i><br/>For the <i>memories.</i></h1><p>Saved shows and upcoming dates from the artists you follow.<br/>Kept on this browser. No account needed.</p></div><EventList events={eventIndex} mode="saved" client:only="preact"/></section></BaseLayout>

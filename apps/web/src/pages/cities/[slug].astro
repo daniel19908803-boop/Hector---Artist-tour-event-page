@@ -1,0 +1,9 @@
+---
+import CollectionLayout from '../../layouts/CollectionLayout.astro';
+import {cities,venues,artists,upcomingEvents,getVenue} from '../../lib/data';
+export function getStaticPaths(){return cities.map(city=>({params:{slug:city.toLowerCase().replaceAll(' ','-')},props:{city}}))}
+const {city}=Astro.props;
+const selected=upcomingEvents.filter(e=>getVenue(e.venueId).city===city);
+const copy:Record<string,string>={Raleigh:'From downtown stages to a new room in the Warehouse District. Find a sound, choose a night, and see where Raleigh takes you.',Durham:'Late sets, close harmonies, and room to discover something different. Your next Durham night starts right here.','Chapel Hill':'A town with music in its bones. Explore our growing guide to Chapel Hill and its neighboring stages.',Carrboro:'A little town with a big place in your record collection. Get closer to the music in Carrboro.',Cary:'Make a little room for live music. Our Cary guide is growing; discover the shows happening across the Triangle in the meantime.'};
+---
+<CollectionLayout title={`Live music in ${city}`} eyebrow="Your neighborhood, live" description={copy[city]} events={selected} venues={venues.filter(v=>v.city===city)} artists={artists.filter(a=>selected.some(e=>e.artistId===a.id))}/>

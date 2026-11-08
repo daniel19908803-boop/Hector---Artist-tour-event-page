@@ -44,7 +44,24 @@ The public website currently reads its local sample data. Connecting CMS reads, 
 
 ## Hosting
 
-The `.openai/hosting.json` manifest configures the private Sites deployment. The same `dist/` output can be deployed as a static site on Vercel with the repository root build command `pnpm build` and output directory `dist`. Set `PUBLIC_SITE_URL` to the final origin before building and update `public/robots.txt` for that origin. SSR integrations require switching the Astro output/adapter configuration before adding live API routes.
+Vercel builds from the repository root using the checked-in `vercel.json`: pnpm install, `pnpm build`, and the static `dist/` output. Node 24 is pinned in `package.json`. The current site is static and does not require the server adapter. SSR integrations require switching the Astro output/adapter configuration before adding live API routes.
+
+To link this checkout and enable automatic deployment using Vercel CLI:
+
+```sh
+npx --yes vercel@latest login
+npx --yes vercel@latest link
+pnpm deploy:connect
+pnpm deploy
+```
+
+When linking, choose your intended Vercel account/team, create or select the project, and keep the project root at `./`. The Vercel GitHub integration must have access to `daniel19908803-boop/Hector---Artist-tour-event-page`. Once connected, pushes to the production branch (`main`) deploy to production; pushes to other branches create previews. No GitHub Actions deployment token is needed for this connection. The existing GitHub Actions workflow continues to run validation separately.
+
+`pnpm deploy:preview` starts a manual preview deployment. `pnpm deploy` starts a manual production deployment. The CLI stores the local project link under ignored `.vercel/`; do not commit tokens or downloaded environment files.
+
+Canonical URLs, social metadata, calendar links, sitemap, and `robots.txt` use `PUBLIC_SITE_URL` when explicitly configured. Otherwise Vercel builds use the automatically provided `VERCEL_PROJECT_PRODUCTION_URL` (falling back to `VERCEL_URL`). For a future custom domain, set `PUBLIC_SITE_URL` in Vercel and redeploy. Leave it unset to use Vercel's own address.
+
+The existing Sites hosting manifest is retained for the original deployment. Vercel uploads exclude that manifest, local environment files, and test artifacts through `.vercelignore`.
 
 ## Verification
 

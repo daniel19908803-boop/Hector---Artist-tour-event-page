@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "packageManager": "pnpm@10.32.1",
+  "engines": {"node": "24.x"},
   "pnpm": {"overrides": {"@emnapi/runtime": "1.11.3"}},
   "scripts": {
     "dev": "pnpm --filter @livediscover/web dev",
@@ -12,7 +13,10 @@
     "test:e2e": "playwright test",
     "seed": "tsx scripts/seed.ts",
     "seed:clean": "tsx scripts/seed.ts --clean",
-    "studio": "pnpm --dir studio dev"
+    "studio": "pnpm --dir studio dev",
+    "deploy:connect": "npx --yes vercel@latest git connect --yes",
+    "deploy:preview": "npx --yes vercel@latest deploy",
+    "deploy": "npx --yes vercel@latest deploy --prod"
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",

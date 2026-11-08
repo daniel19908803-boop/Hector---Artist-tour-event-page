@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /studio
-Disallow: /saved
-Disallow: /api/
-Sitemap: https://livediscover-triangle-nights.webking105.chatgpt.site/sitemap-index.xml

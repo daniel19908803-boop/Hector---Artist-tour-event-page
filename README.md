@@ -44,8 +44,6 @@ The public website currently reads its local sample data. Connecting CMS reads, 
 
 ## Hosting
 
-The preferred origin is `https://hector.artist.site`. See `docs/domain-setup.md` for the pending DNS records needed to activate the custom hostname.
-
 The `.openai/hosting.json` manifest configures the private Sites deployment. The same `dist/` output can be deployed as a static site on Vercel with the repository root build command `pnpm build` and output directory `dist`. Set `PUBLIC_SITE_URL` to the final origin before building and update `public/robots.txt` for that origin. SSR integrations require switching the Astro output/adapter configuration before adding live API routes.
 
 ## Verification

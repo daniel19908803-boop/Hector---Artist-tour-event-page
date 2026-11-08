@@ -44,6 +44,8 @@ The public website currently reads its local sample data. Connecting CMS reads, 
 
 ## Hosting
 
+Production site: https://hector-artist-tour-event-page.vercel.app
+
 Vercel builds from the repository root using the checked-in `vercel.json`: pnpm install, `pnpm build`, and the static `dist/` output. Node 24 is pinned in `package.json`. The current site is static and does not require the server adapter. SSR integrations require switching the Astro output/adapter configuration before adding live API routes.
 
 To link this checkout and enable automatic deployment using Vercel CLI:

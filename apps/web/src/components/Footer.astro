@@ -1,10 +1,11 @@
 ---
 import Wordmark from './Wordmark.astro';
 import Icon from './Icon.astro';
+import {hasSampleContent} from '../lib/data';
 ---
 <footer class="site-footer"><div class="container">
   <div class="footer-top"><div class="footer-newsletter"><Wordmark footer/><h2>The Weekly <i>Setlist.</i></h2><p>The shows worth knowing about. In your inbox, every Thursday.</p><form class="newsletter-form" data-newsletter><label class="sr-only" for="newsletter-email">Your email address</label><input id="newsletter-email" type="email" name="email" placeholder="Your email address" required autocomplete="email"/><button type="submit">Count me in <Icon name="right" size={17}/></button></form><p class="form-feedback" data-newsletter-feedback aria-live="polite"></p><small>A little music. No noise. Unsubscribe whenever.</small></div>
-  <div class="footer-links"><div><h3>Explore</h3><a href="/events">Upcoming events</a><a href="/artists">Artists & tours</a><a href="/venues">Find a venue</a><a href="/openings">New openings</a><a href="/calendar">The calendar</a></div><div><h3>For the industry</h3><a href="/submit">Submit an event</a><a href="/about#how-it-works">How it works</a><a href="/contact">Get in touch</a><a href="/about">About us</a></div><div><h3>The neighborhood</h3><a href="/cities/raleigh">Raleigh</a><a href="/cities/durham">Durham</a><a href="/cities/chapel-hill">Chapel Hill</a><a href="/cities/carrboro">Carrboro</a><a href="/cities/cary">Cary</a></div></div></div>
+  <div class="footer-links"><div><h3>Explore</h3><a href="/events">Upcoming events</a><a href="/artists">Artists & tours</a><a href="/venues">Find a venue</a><a href="/openings">Openings</a><a href="/calendar">The calendar</a></div><div><h3>For the industry</h3><a href="/submit">Submit an event</a><a href="/about#how-it-works">How it works</a><a href="/contact">Get in touch</a><a href="/about">About us</a></div><div><h3>The neighborhood</h3><a href="/cities/raleigh">Raleigh</a><a href="/cities/durham">Durham</a><a href="/cities/chapel-hill">Chapel Hill</a><a href="/cities/carrboro">Carrboro</a><a href="/cities/cary">Cary</a></div></div></div>
   <div class="footer-bottom"><p>© {new Date().getFullYear()} LiveDiscover <span>Made for the nights you’ll remember.</span></p><div><a href="/privacy">Privacy</a><a href="/terms">Terms</a><span><span class="tiny-dot"></span> Raleigh, North Carolina</span></div></div>
-  <p class="demo-disclosure">An independent concept. Artists, tours, events, and The Foundry Hall are fictional sample content. Venue listings are illustrative; no live tickets are offered.</p>
+  {hasSampleContent&&<p class="demo-disclosure">Preview site — artists, events and venues shown are sample content.</p>}
 </div></footer>

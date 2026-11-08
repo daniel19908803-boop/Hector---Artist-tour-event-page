@@ -13,3 +13,13 @@ export function matchesWhen(date: string, when: string, now=new Date()) {
   if(when==='month')return candidate.slice(0,7)===current.slice(0,7)&&days>=0;
   return true;
 }
+
+export function eventBuckets<T extends {startDateTime:string;endDateTime?:string}>(events: T[], now = new Date()) {
+  const all = events.filter(event => isUpcoming(event, now)).sort((a,b) => a.startDateTime.localeCompare(b.startDateTime));
+  return {
+    all,
+    tonight:all.filter(event => matchesWhen(event.startDateTime,'tonight',now)),
+    week:all.filter(event => matchesWhen(event.startDateTime,'week',now)),
+    month:all.filter(event => matchesWhen(event.startDateTime,'month',now)),
+  };
+}

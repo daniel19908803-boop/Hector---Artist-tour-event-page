@@ -1,6 +1,7 @@
 import { addHours } from 'date-fns';
 import { formatInTimeZone, fromZonedTime } from 'date-fns-tz';
 import type { Artist, Venue, MusicEvent } from './types';
+import { eventBuckets } from './dates';
 
 export const timezone = 'America/New_York';
 export const cities = ['Raleigh', 'Durham', 'Chapel Hill', 'Carrboro', 'Cary'];
@@ -28,8 +29,24 @@ const [todayYear,todayMonth]=today.split('-').map(Number);
 const nextMonth = new Date(Date.UTC(todayYear,todayMonth,1,12));
 const firstSaturday = (6 - nextMonth.getUTCDay() + 7) % 7;
 const openingLocal = new Date(Date.UTC(todayYear,todayMonth,firstSaturday+8,12));
-export const openingDate = fromZonedTime(`${openingLocal.toISOString().slice(0,10)}T19:00:00`, timezone).toISOString();
-venues.find(v => v.id === 'foundry')!.openingDate = openingDate;
+let sampleDocumentsExist = false;
+// Read the published venue opening when a Sanity project is connected.
+const project = process.env.PUBLIC_SANITY_PROJECT_ID || import.meta.env?.PUBLIC_SANITY_PROJECT_ID;
+if(project){
+  const dataset=process.env.PUBLIC_SANITY_DATASET || import.meta.env?.PUBLIC_SANITY_DATASET || 'production';
+  const token=process.env.SANITY_API_READ_TOKEN || import.meta.env?.SANITY_API_READ_TOKEN || process.env.SANITY_API_WRITE_TOKEN;
+  const query='{ "venues": *[_type == "venue" && defined(opening.openingDate)]{ "slug": slug.current, timezone, opening }, "hasSamples": count(*[isSample == true]) > 0 }';
+  const response=await fetch(`https://${project}.api.sanity.io/v2025-01-01/data/query/${encodeURIComponent(dataset)}?query=${encodeURIComponent(query)}`,{headers:token?{Authorization:`Bearer ${token}`}:{}});
+  if(!response.ok)throw new Error(`Could not read Sanity venue openings (${response.status}).`);
+  const {result}=await response.json() as {result:{venues:{slug:string;timezone?:string;opening:{isNewVenue:boolean;openingDate:string}}[];hasSamples:boolean}};
+  sampleDocumentsExist=result.hasSamples;
+  for(const document of result.venues){const venue=venues.find(v=>v.slug===document.slug);if(venue){venue.opening=document.opening;venue.timezone=document.timezone||timezone;venue.isNew=document.opening.isNewVenue;venue.openingDate=document.opening.openingDate;}}
+}
+const foundry=venues.find(v => v.id === 'foundry')!;
+foundry.opening ??= {isNewVenue:true,openingDate:fromZonedTime(`${openingLocal.toISOString().slice(0,10)}T19:00:00`,timezone).toISOString()};
+foundry.timezone ??= timezone;
+export const openingDate = foundry.opening.openingDate;
+foundry.openingDate = openingDate;
 const descriptions = [
   'A night for finding your new favorite song. Arrive early, catch the opening set, and settle in for a performance that stays with you long after the last note.',
   'One room, a live band, and nowhere else you need to be. This stop on the tour brings new material and familiar favorites together for an evening made for being there.',
@@ -56,8 +73,9 @@ export const events: MusicEvent[] = schedule.map(([artistId,venueId,day,priceFro
 events.push({id:'event-opening', slug:'the-foundry-hall-opening-night',title:'The first of many nights', artistId:'velvet',venueId:'foundry',startDateTime:openingDate,endDateTime:addHours(new Date(openingDate),4).toISOString(),doorsTime:openingDate,genre:'Soul & R&B',priceFrom:0,status:'scheduled',description:'Step inside The Foundry Hall for the very first time. The Velvet Hours and special local guests christen the stage with a night of warm soul, adventurous sounds, and a toast to a new gathering place. Entry is free with an RSVP. This opening is a fictional demonstration.',eventType:'venueOpening',ticketing:'rsvp',isFree:true,isSample:true});
 export const getArtist = (id: string) => artists.find(a=>a.id===id)!;
 export const getVenue = (id: string) => venues.find(v=>v.id===id)!;
-export const upcomingEvents = events.filter(e=>new Date(e.endDateTime)>now).sort((a,b)=>a.startDateTime.localeCompare(b.startDateTime));
+export const upcomingEvents = eventBuckets(events,now).all;
 export const artistEvents = (id: string) => upcomingEvents.filter(e=>e.artistId===id);
 export const venueEvents = (id: string) => upcomingEvents.filter(e=>e.venueId===id);
 export const displayDate = (date: string, pattern='MMM d') => formatInTimeZone(date,timezone,pattern);
 export const eventIndex = upcomingEvents.map(e=>({...e,artist:getArtist(e.artistId),venue:getVenue(e.venueId)}));
+export const hasSampleContent = sampleDocumentsExist || [...artists,...venues,...events].some(document=>document.isSample);

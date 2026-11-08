@@ -15,4 +15,9 @@ document.querySelectorAll<HTMLFormElement>('[data-newsletter]').forEach(form=>fo
 document.querySelectorAll<HTMLSelectElement>('[data-grid-filter]').forEach(select=>select.addEventListener('change',()=>{const key=select.dataset.gridFilter!;const cards=document.querySelectorAll<HTMLElement>('[data-grid-item]');let visible=0;cards.forEach(card=>{card.hidden=Boolean(select.value&&card.dataset[key]!==select.value);if(!card.hidden)visible++});const count=document.querySelector('[data-grid-count]');if(count)count.textContent=`${visible} ${key==='city'?'venues':'artists'}`;const empty=document.querySelector<HTMLElement>('[data-grid-empty]');if(empty)empty.hidden=visible>0;const params=new URLSearchParams(location.search);if(select.value)params.set(key,select.value);else params.delete(key);history.replaceState(null,'',location.pathname+(params.size?'?'+params:''));}));
 for(const select of document.querySelectorAll<HTMLSelectElement>('[data-grid-filter]')){const value=new URLSearchParams(location.search).get(select.dataset.gridFilter!);if(value){select.value=value;select.dispatchEvent(new Event('change'))}}
 document.querySelector<HTMLSelectElement>('[data-artist-sort]')?.addEventListener('change',e=>{const value=(e.currentTarget as HTMLSelectElement).value;const grid=document.querySelector('[data-sort-grid]');if(!grid)return;const cards=Array.from(grid.querySelectorAll<HTMLElement>('[data-grid-item]'));cards.sort((a,b)=>value==='za'?(b.dataset.name||'').localeCompare(a.dataset.name||''):(a.dataset.name||'').localeCompare(b.dataset.name||''));cards.forEach(c=>grid.append(c));});
-document.querySelectorAll<HTMLElement>('[data-ends-at]').forEach(row=>{if(new Date(row.dataset.endsAt!)<new Date()&&!row.closest('.archive'))row.hidden=true});
+function refreshEvents(){
+ const now=Date.now();
+ document.querySelectorAll<HTMLElement>('[data-ends-at]').forEach(row=>{if(!row.closest('.archive,.event-list-island'))row.hidden=Date.parse(row.dataset.endsAt!)<=now});
+ window.dispatchEvent(new Event('ld:time'));
+}
+refreshEvents();setInterval(refreshEvents,60000);document.addEventListener('visibilitychange',refreshEvents);

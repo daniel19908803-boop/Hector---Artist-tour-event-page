@@ -1,0 +1,13 @@
+---
+import {openingCountdown} from '../lib/opening';
+interface Props {openingDate:string;timezone?:string;inline?:boolean}
+const {openingDate,timezone='America/New_York',inline=false}=Astro.props;
+const result=openingCountdown(openingDate,timezone);
+const Tag=inline?'span':'div';
+const script=`(()=>{const calculate=${openingCountdown.toString()};const refresh=()=>{document.querySelectorAll('[data-opening-date]').forEach(el=>{const result=calculate(el.dataset.openingDate,el.dataset.openingTimezone);el.dataset.openingState=result.state;el.querySelector('[data-opening-text]').textContent=result.label;const days=el.querySelector('[data-opening-days]');if(days){days.hidden=result.days<=0;days.textContent=result.days>0?String(result.days):'';const unit=el.querySelector('[data-opening-unit]');unit.hidden=result.days<=0;unit.textContent=result.days===1?'day to go':'days to go';el.querySelector('.opening-day-status').textContent=result.label;}})};refresh();setInterval(refresh,60000);document.addEventListener('visibilitychange',refresh)})();`;
+---
+<Tag class:list={['opening-countdown',{'countdown-badge':!inline}]} data-opening-date={openingDate} data-opening-timezone={timezone} data-opening-state={result.state}>
+  <span data-opening-text class:list={{'sr-only':!inline}}>{result.label}</span>
+  {!inline&&<><strong data-opening-days hidden={result.days<=0} aria-hidden="true">{result.days>0?result.days:''}</strong><span data-opening-unit aria-hidden="true" hidden={result.days<=0}>{result.days===1?'day to go':'days to go'}</span><span class="opening-day-status" aria-hidden="true">{result.days===0?'Opens tonight':'Now open'}</span></>}
+</Tag>
+<script is:inline set:html={script}/>

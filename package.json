@@ -9,10 +9,11 @@
     "dev": "pnpm --filter @livediscover/web dev",
     "build": "pnpm --filter @livediscover/web build",
     "check": "pnpm --filter @livediscover/web check",
+    "lint": "eslint . --max-warnings 0",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "seed": "tsx scripts/seed.ts",
-    "seed:clean": "tsx scripts/seed.ts --clean",
+    "seed": "node --env-file-if-exists=.env --env-file-if-exists=.env.local --import tsx scripts/seed.ts",
+    "seed:clean": "node --env-file-if-exists=.env --env-file-if-exists=.env.local --import tsx scripts/seed.ts --clean",
     "studio": "pnpm --dir studio dev",
     "deploy:connect": "npx --yes vercel@latest git connect --yes",
     "deploy:preview": "npx --yes vercel@latest deploy",
@@ -22,9 +23,12 @@
     "@playwright/test": "^1.58.2",
     "@axe-core/playwright": "^4.11.1",
     "@types/node": "^24.0.0",
+    "eslint": "^9.39.5",
+    "eslint-plugin-astro": "^1.7.0",
     "sharp": "^0.34.5",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.1",
     "vitest": "^4.0.18"
   }
 }

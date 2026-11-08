@@ -13,5 +13,5 @@ export default defineConfig({
   outDir: '../../dist',
   devToolbar: { enabled: false },
   integrations: [preact(), sitemap({ filter: (url) => !/\/(saved|studio|styleguide|rsvp)(\/|$)/.test(url) })],
-  vite: { plugins: [tailwindcss()] },
+  vite: { envDir: '../..', plugins: [tailwindcss()] },
 });

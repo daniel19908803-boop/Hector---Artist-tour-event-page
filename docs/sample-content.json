@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-08T06:44:30.714Z",
+  "generatedAt": "2026-11-08T10:06:58.677Z",
   "artists": [
     {
       "id": "marlowe",
@@ -13,7 +13,8 @@
       "dates": 24,
       "color": "#ba7640",
       "bio": "Guitars that glow like the last light on a mountain road. Marlowe & the Static turn small-town stories into widescreen indie rock, equal parts restless energy and slow-burning warmth. Their new live set follows the thread of After the Afterglow: finding a little light in the places you least expect.",
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Amber spotlights crossing an empty stage"
     },
     {
       "id": "vexa",
@@ -27,7 +28,8 @@
       "dates": 31,
       "color": "#7e9190",
       "bio": "A late-night transmission from somewhere between the dance floor and a daydream. VEXA builds immersive live electronic sets from analog synths, fractured vocals, and bass you can feel in your ribs. Between Frequencies is a room-filling journey, designed to be experienced together.",
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Cool blue beams of light over a dark stage"
     },
     {
       "id": "juniper",
@@ -41,7 +43,8 @@
       "dates": 18,
       "color": "#747947",
       "bio": "Songs that feel like letters from an old friend. Saint Juniper pairs fingerpicked guitar with close harmonies and the kind of storytelling that makes a crowded room fall quiet. The Long Way Home brings new songs, familiar favorites, and a few stories from the road.",
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Green light falling across an intimate stage"
     },
     {
       "id": "velvet",
@@ -55,7 +58,8 @@
       "dates": 22,
       "color": "#967a76",
       "bio": "Deep grooves. Patient melodies. Nothing rushed. The Velvet Hours bring the warmth of classic soul into the present, with a live rhythm section that knows exactly when to leave space. In Good Time is their invitation to put the phone away and stay a little longer.",
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Soft rose and amber lights over a stage"
     },
     {
       "id": "pines",
@@ -69,7 +73,8 @@
       "dates": 16,
       "color": "#9c4236",
       "bio": "Heavy riffs with roots that run deep. Iron Pines channel Appalachian atmosphere into a thunderous live show, moving from spacious passages to walls of sound. Bring ear protection and make room at the front.",
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Red spotlights illuminating a dark stage"
     },
     {
       "id": "cassidy",
@@ -83,7 +88,8 @@
       "dates": 28,
       "color": "#768f9b",
       "bio": "Big-hearted pop for the drive home with the windows down. Cassidy Rowe writes candid songs about growing up, moving on, and starting over. Everything in Color brings those stories to life with a full band and a chorus for everyone in the room.",
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Blue spotlights cutting through stage haze"
     }
   ],
   "venues": [
@@ -102,7 +108,8 @@
       "lng": -78.637,
       "accessibility": "Contact the venue directly to confirm accessible entry, viewing areas, and companion seating.",
       "parking": "Check nearby downtown garages and current parking restrictions before you travel.",
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Warm spotlights above an empty theatre stage"
     },
     {
       "id": "cradle",
@@ -119,7 +126,8 @@
       "lng": -79.0711,
       "accessibility": "Please confirm specific accessibility arrangements directly with the venue before booking.",
       "parking": "Explore public parking in downtown Carrboro and check posted restrictions.",
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Red beams of light over an intimate stage"
     },
     {
       "id": "motorco",
@@ -136,7 +144,8 @@
       "lng": -78.9,
       "accessibility": "Ask the venue about step-free access, accessible restrooms, and viewing arrangements.",
       "parking": "Allow time to find parking around the Central Park district.",
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Cool spotlights illuminating a music hall stage"
     },
     {
       "id": "ritz",
@@ -153,7 +162,8 @@
       "lng": -78.6203,
       "accessibility": "Contact the venue for current accessibility information and seating options.",
       "parking": "Review the venue’s current travel and parking guidance before arrival.",
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Blue spotlights cutting through stage haze"
     },
     {
       "id": "arena",
@@ -170,7 +180,8 @@
       "lng": -78.7218,
       "accessibility": "Confirm accessible parking, entry, and seating with the venue.",
       "parking": "Plan your route and review event-specific parking information.",
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Amber stage lights cutting through a dark, empty music hall"
     },
     {
       "id": "dpac",
@@ -187,7 +198,8 @@
       "lng": -78.9022,
       "accessibility": "Check with the venue for accessible seats, assisted listening, and other accommodations.",
       "parking": "Check downtown Durham garage availability and event pricing.",
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Warm spotlights above an empty theatre stage"
     },
     {
       "id": "foundry",
@@ -206,7 +218,13 @@
       "parking": "The fictional venue is in the Warehouse District. A precise address will be added before a real opening.",
       "isNew": true,
       "isSample": true,
-      "openingDate": "2026-12-13T00:00:00.000Z"
+      "opening": {
+        "isNewVenue": true,
+        "openingDate": "2026-12-13T00:00:00.000Z"
+      },
+      "timezone": "America/New_York",
+      "openingDate": "2026-12-13T00:00:00.000Z",
+      "imageAlt": "Amber lights illuminating an industrial hall stage"
     }
   ],
   "events": [
@@ -227,7 +245,8 @@
       "ticketing": "link",
       "isFree": false,
       "featured": true,
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Amber spotlights crossing an empty stage"
     },
     {
       "id": "event-2",
@@ -246,7 +265,8 @@
       "ticketing": "link",
       "isFree": false,
       "featured": false,
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Cool blue beams of light over a dark stage"
     },
     {
       "id": "event-3",
@@ -265,7 +285,8 @@
       "ticketing": "link",
       "isFree": false,
       "featured": false,
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Green light falling across an intimate stage"
     },
     {
       "id": "event-4",
@@ -284,7 +305,8 @@
       "ticketing": "link",
       "isFree": false,
       "featured": false,
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Soft rose and amber lights over a stage"
     },
     {
       "id": "event-5",
@@ -303,7 +325,8 @@
       "ticketing": "link",
       "isFree": false,
       "featured": false,
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Red spotlights illuminating a dark stage"
     },
     {
       "id": "event-6",
@@ -322,7 +345,8 @@
       "ticketing": "link",
       "isFree": false,
       "featured": false,
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Blue spotlights cutting through stage haze"
     },
     {
       "id": "event-7",
@@ -341,7 +365,8 @@
       "ticketing": "link",
       "isFree": false,
       "featured": false,
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Amber spotlights crossing an empty stage"
     },
     {
       "id": "event-8",
@@ -360,7 +385,8 @@
       "ticketing": "link",
       "isFree": false,
       "featured": false,
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Cool blue beams of light over a dark stage"
     },
     {
       "id": "event-9",
@@ -379,7 +405,8 @@
       "ticketing": "link",
       "isFree": false,
       "featured": false,
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Green light falling across an intimate stage"
     },
     {
       "id": "event-10",
@@ -398,7 +425,8 @@
       "ticketing": "link",
       "isFree": true,
       "featured": false,
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Soft rose and amber lights over a stage"
     },
     {
       "id": "event-11",
@@ -417,7 +445,8 @@
       "ticketing": "link",
       "isFree": false,
       "featured": false,
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Blue spotlights cutting through stage haze"
     },
     {
       "id": "event-12",
@@ -436,7 +465,8 @@
       "ticketing": "link",
       "isFree": false,
       "featured": false,
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Red spotlights illuminating a dark stage"
     },
     {
       "id": "event-13",
@@ -455,7 +485,8 @@
       "ticketing": "link",
       "isFree": false,
       "featured": false,
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Amber spotlights crossing an empty stage"
     },
     {
       "id": "event-14",
@@ -474,7 +505,8 @@
       "ticketing": "link",
       "isFree": false,
       "featured": false,
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Cool blue beams of light over a dark stage"
     },
     {
       "id": "event-15",
@@ -493,7 +525,8 @@
       "ticketing": "link",
       "isFree": false,
       "featured": false,
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Soft rose and amber lights over a stage"
     },
     {
       "id": "event-16",
@@ -512,7 +545,8 @@
       "ticketing": "link",
       "isFree": false,
       "featured": false,
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Green light falling across an intimate stage"
     },
     {
       "id": "event-17",
@@ -531,7 +565,8 @@
       "ticketing": "link",
       "isFree": false,
       "featured": false,
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Cool blue beams of light over a dark stage"
     },
     {
       "id": "event-18",
@@ -550,7 +585,8 @@
       "ticketing": "link",
       "isFree": false,
       "featured": false,
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Amber spotlights crossing an empty stage"
     },
     {
       "id": "event-opening",
@@ -568,7 +604,8 @@
       "eventType": "venueOpening",
       "ticketing": "rsvp",
       "isFree": true,
-      "isSample": true
+      "isSample": true,
+      "imageAlt": "Soft rose and amber lights over a stage"
     }
   ],
   "genres": [
